@@ -1,0 +1,376 @@
+<%- include("../partials/header")  %>  
+<!-- <%# include("../partials/navbar")  %> -->
+
+  <link rel="stylesheet" href="/css/admin.css">
+
+  <!-- <form class=" mt-5 mb-5" style="width: 300px; margin-left: 75px;  " action="/upload/image" method="POST" enctype="multipart/form-data" >
+      
+      <%# if(currentUser.profilePhoto === undefined){%>
+        <div style="box-sizing: content-box; ">
+          <img  src="https://st.depositphotos.com/2101611/4338/v/950/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg" style="border-radius: 50%;height: 220px; width: 230px; border: 1px solid gray; object-fit: cover;" alt="...">
+        </div>
+      <%# }else{ %> 
+        <div style="box-sizing: content-box; ">
+          <img src="<%# currentUser.profilePhoto %> " style="border-radius: 50%;height: 200px; width: 230px; border: 1px solid gray;object-fit: cover;" alt="...">
+        </div>
+      <%# } %> 
+
+      <div class="mb-3" style="width: 107px; display: inline-block;" >
+        <label for="photo" class="form-label">Update Photo</label>
+        <input type="file" class="form-control" id="photo" name="image" >
+      </div>
+      
+      <button type="submit" class="btn btn-success mb-5" style="margin-top: 43px; margin-left: 5px;">Upload Photo</button>
+  </form> -->
+
+
+
+  <div class="profileContainer">
+
+    <!-- -------------------------------------SideBar------------------------------------------ -->
+
+    <div class="sidebar">
+
+      <div class="sidebarHeading"> 
+        <i class="fas fa-shopping-basket sidebarHeadingIcon"></i> 
+        <span style="font-size: 22px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+          Shoping Cart
+        </span>
+      </div>
+
+      <div class="sidebarWrapper">
+          <ul class="sidebarList">
+
+              <li class="sidebarListItem">
+                <i class="fas fa-home sidebarIcon"></i>
+                <a class="sidebarListItemText" style="color: black;text-decoration: none;" href="/">Home</a>
+              </li>
+              <li class="sidebarListItem ">
+                <i class="fas fa-shopping-bag sidebarIcon"></i>
+                <a class="sidebarListItemText" style="color: black;text-decoration: none;" href="/products">Products</a>
+              </li>
+              <li class="sidebarListItem">
+                <i class="fas fa-cart-arrow-down sidebarIcon"></i>
+                <a class="sidebarListItemText" style="color: black;text-decoration: none;" href="/user/<%= currentUser._id %>/cart">My Cart</a>
+              </li>
+              <li class="sidebarListItem">
+                <i class="fas fa-id-card sidebarIcon"></i>
+                <a class="sidebarListItemText" style="color: black;text-decoration: none;" href="/contactUs">Contact Us</a>
+              </li>
+              <li class="sidebarListItem ">
+                <i class="fas fa-users sidebarIcon"></i>
+                <a class="sidebarListItemText" style="color: black;text-decoration: none;" href="/contactUs">Our Team</a>
+              </li>
+              <li class="sidebarListItem">
+                <i class="fas fa-gift sidebarIcon"></i>
+                <a class="sidebarListItemText" style="color: black;text-decoration: none;" href="/upload/<%= currentUser._id %>">My Orders</a>
+              </li>
+              <li class="sidebarListItem">
+                <i class="fas fa-sign-out-alt sidebarIcon"></i>
+                <a class="sidebarListItemText" style="color: black;text-decoration: none;" href="/upload">Logout</a>
+              </li>
+          </ul>
+  
+          <!-- <button class="sidebarButton">Show More</button> -->
+          <a class="sidebarButton" href="/products">Show More</a>
+
+          <hr class="sidebarHr" />
+          
+          <div class="cartItems">
+            <h2 ><a class="cartItemsHeading" href="/user/<%= currentUser._id %>/cart"><i class="fas fa-cart-arrow-down"></i> Card Items</a></h2>
+          </div>
+
+          <% if(userCart.length === 0){ %> 
+
+            <div class="defaultCartSection">
+              <span class="DefaltCartHeading">Your cart is Empty <i style="font-size: 24px; display: block; text-align: center;" class="far fa-frown-open"></i></span>
+              <img class="defaultCartImg" src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=747&q=80" alt="">
+            </div>
+
+          <% }else { %> 
+
+            <ul class="sidebarFriendList">
+              
+              <% for(let item of userCart){ %> 
+
+                <li class="sidebarFriend">
+                  <img class="sidebarFriendImg" src="<%= item.img %> " alt="x" >
+                  <span class="sidebarFriendName"><%= item.name %> </span>
+                </li>
+
+              <% } %> 
+             
+          </ul>
+
+          <% } %> 
+
+        </div>
+    </div>
+
+    <!-- ------------------------------ProfilePhotoSection--------------------------- -->
+
+    <div class="profileRight">
+      <div class="profileRightTop">
+
+        <div class="profileCover">
+
+            <div>
+
+              <form action="/upload/coverImg/<%= currentUser._id %>" method="POST" enctype="multipart/form-data" >
+      
+                <% if(currentUser.coverPhoto === undefined){ %> 
+                  
+                  <img class="profileCoverImg" src="https://images.unsplash.com/photo-1482225084339-a0ef1162ad9d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=889&q=80" alt="x"> 
+
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle coverToggle bg-dark" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fas fa-camera"></i> <span>Edit Cover Photo</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+
+                      <li>
+                        <div class="dropdown-item">
+                          
+                          <label for="photo" class="form-label">Add Cover Photo</label>
+                          <input type="file" class="form-control" id="photo" name="image" >
+
+                          <button type="submit" class="btn btn-success" style="margin-top: 5px;">Upload Photo</button>
+
+                        </div>
+                      </li>
+                      
+                    </ul>
+                  </div>
+
+                <% }else{ %> 
+
+                  
+                    <img src="<%= currentUser.coverPhoto %> " class="profileCoverImg" alt="...">
+
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle coverToggle bg-dark" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-camera"></i> <span>Change Cover Photo</span>
+                      </button>
+                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                        
+                        <li class="dropdown-item"><a style="color: rgb(243, 242, 242); text-decoration: none;" href="/removeCoverPhoto/<%= currentUser._id %> ">Remove Cover Photo</a></li>
+
+                        <li><hr class="dropdown-divider"></li>
+
+                        <li>
+                          <div class="dropdown-item">
+                            
+                            <label for="photo" class="form-label">Add Cover Photo</label>
+                            <input type="file" class="form-control" id="photo" name="image" >
+  
+                            <button type="submit" class="btn btn-success" style="margin-top: 5px;">Upload Photo</button>
+  
+                          </div>
+                        </li>
+                        
+                      </ul>
+                    </div>
+                  
+                <% } %> 
+          
+              </form>
+
+            </div>
+
+            <div >
+
+                <form action="/upload/image/<%= currentUser._id %> " method="POST" enctype="multipart/form-data" >
+      
+                  <% if(currentUser.profilePhoto === undefined){%>
+                    <div class="dropdown">
+
+                      <div class="btn btn-secondary dropdown-toggle profileToggle" type="button"       id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://st.depositphotos.com/2101611/4338/v/950/depositphotos_43381243-stock-illustration-male-avatar-profile-picture.jpg" class="profileUserImg" class="profileUserImg" alt="...">
+                      </div>
+
+                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+
+                        <li>
+                          <div class="dropdown-item">
+                            <label for="photo" class="form-label">Update Photo</label>
+                            <input type="file" class="form-control" id="photo" name="image" >
+
+                            <button type="submit" class="btn btn-success" style="margin-top: 5px;">Upload Photo</button>
+                          </div>
+                        </li>
+
+                      </ul>
+                    </div>
+
+                  <% }else{ %> 
+                    <!-- <div>
+                      <img src="<%# currentUser.profilePhoto %> " class="profileUserImg" alt="...">
+                    </div> -->
+
+
+                    <div class="dropdown">
+
+                      <div class="btn btn-secondary dropdown-toggle profileToggle" type="button"       id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="<%= currentUser.profilePhoto %> " class="profileUserImg" alt="...">
+                      </div>
+
+                      <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+
+                        <li><a class="dropdown-item" href="/removeImg/<%= currentUser._id %> ">Remove Photo</a></li>
+
+                        <li><hr class="dropdown-divider"></li>
+
+                        <li>
+                          <div class="dropdown-item">
+                            <label for="photo" class="form-label">Update Photo</label>
+                            <input type="file" class="form-control" id="photo" name="image" >
+
+                            <button type="submit" class="btn btn-success" style="margin-top: 5px;">Upload Photo</button>
+                          </div>
+                        </li>
+
+                      </ul>
+                    </div>
+
+                  <% } %> 
+
+                </form>
+
+            </div>
+            
+        </div>
+
+        <div class="profileInfo">
+            <h4 class="ProfileInfoName text-capitalize"><%= currentUser.username %> </h4>
+        </div>
+      </div>
+
+      <!-- ---------------------------------profileRightBottom------------------------------ -->
+
+      <div class="profileRightBottom">
+        
+        <!-- ----------------------------------------Feed------------------------------------- -->
+
+        <div class="share">
+
+          <div class="shareWrapper">
+
+              <!-- <div class="shareTop">
+                  <img class="shareProfileImg" src="https://images.unsplash.com/photo-1624484631620-9e53e4aed980?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt="" />
+
+                  <input type="text" name="postUsername" class="shareInput" placeholder="Add Name" />
+                  <span name="postUsername" >xyzzzzzzzzzzz...............</span>
+                  
+              </div> -->
+
+              <!-- <hr class="shareHr" /> -->
+
+
+              <% if(userOrders.length === 0){ %> 
+
+                <div class="orderEmptyImgBox">
+                  <img class="shareEmptyImg" src="/assets/emptyOrder.png" alt="">
+
+                  <div class="epmtyOrderText">
+                    <h4 style="margin-bottom: 15px;">You have not order anything yet!!</h4>
+                    <a class="shopNow" href="/products">Shop now</a>
+                  </div>
+
+                </div>
+
+              <% }else{ %>  
+
+                <h2 style="margin-top: 10px;"><i class="fas fa-gift"></i> My orders</h2>
+
+                <%for(let item of userOrders){%>
+                  <div class="card mb-4 mt-3" style="width: 100%; height: 170px;">
+                    <div class="row g-0" style="height: 100%;">
+                      <div class="col-md-4" >
+                        <img style="width: 100%; height: 100% ;object-fit: cover; padding: 10px; max-height: 170px;" src="<%= item.img %> " alt="...">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body" >
+                          <h5 class="card-title" ><%= item.name %></h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    
+                          <form action="/user/<%=currentUser._id%>/order/<%=item._id%>?_method=DELETE" method="post">
+                            <button class="btn btn-sm btn-danger">remove</button>
+                          </form>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <%}%>
+
+              <% } %> 
+
+          </div>
+        </div>
+        
+        <!-- -------------------------------------------Ads Sections----------------------------------- -->
+
+        <div class="rightbar">
+
+          <div class="rightbarWrapper">
+
+            <span class="rightBarAds"> <i class="fas fa-shopping-bag"></i> Products</span>
+            
+            <div class="birthdayContainer">
+              <img class="birthdayImg" src="https://images.unsplash.com/photo-1607370658981-051075679ef0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80" alt="" />
+           </div> 
+
+           <div class="cartAndBuyBoxes">
+
+            <article style="margin-right: 5px; width: 43%;">
+              <div class="card text-white bg-success mb-3  " style="max-width: 18rem;">
+                <div class="card-header">Items in Cart</div>
+                <div class="card-body">
+                  <h5 class="card-title"> <%= userCart.length %> </h5>
+                </div>
+              </div>
+            </article>
+
+            <article style="padding-left: 5px;width: 43%;">
+              <div class="card text-dark bg-warning mb-3 " style="max-width: 18rem;">
+                <div class="card-header">Total Orders</div>
+                <div class="card-body">
+                  <h5 class="card-title"><%= userOrders.length %></h5>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+  <script>
+    function toggleMenu(){
+      let toggle = document.querySelector('.toggle');
+      let navigation = document.querySelector('.navigation');
+      toggle.classList.toggle('active');
+      navigation.classList.toggle('active');
+    }
+  </script>
+
+
+
+<script src="/js/admin.js"></script>
+
+<%- include("../partials/footer")  %>

@@ -1,0 +1,247 @@
+/* *{
+    margin: 0;
+    padding: 0;
+}
+.home .home-slider .item{
+    position: relative;
+}
+
+.home .home-slider .item img{
+    height: 92vh;
+    object-fit:cover;
+    width: 100%;
+}
+
+.home .home-slider .item .content{
+    position: absolute;
+    top:50%;
+    left: 5%;
+    transform: translateY(-50%);
+}
+
+.home .home-slider .item .content h3{
+    color: #fff;
+    text-shadow: .4rem .3rem .5rem #000;
+    font-size: 3.2rem;
+    text-transform: uppercase;
+}
+
+.home .home-slider .item .content p{
+    color: #fff;
+    font-size: 1.3rem;
+    padding: 19px 0px;
+    width: 50rem;
+}
+
+.btn{
+    height: 2.8rem;
+    width: 9rem;
+    background: royalblue;
+    color: #fff;
+    font-size: 1.2rem;
+    border: none;
+    outline: none;
+}
+.btn:hover{
+    letter-spacing: 2px;
+    opacity: 0.85;
+}
+
+.home .owl-carousel .owl-prev, .home .owl-carousel .owl-next{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    outline: none;
+}
+
+.home .owl-carousel .owl-prev{
+    left: 1.3rem;;
+}
+
+.home .owl-carousel .owl-next{
+    right:1.3rem;;
+}
+
+.home .owl-carousel .owl-prev span, .home .owl-carousel .owl-next span{
+    color: #fff;
+    font-size: 5.5rem;
+} */
+
+/* media querry */
+/* @media (max-width:800px){
+
+    html{
+        font-size: 90%;
+    }
+    .home .home-slider .item .content h3{
+        font-size: 2.4 rem;
+    }
+    .home .home-slider .item .content p{
+        font-size: 1 rem;
+        width: auto;
+    }
+} */
+
+
+
+:root{
+    --mainColor:#64bcf4;
+    --hoverColor:#5bacdf;
+    --backgroundColor:#f1f8fc;
+    --darkOne:#312f3a;
+    --darkTwo:#45424b;
+    --lightOne:#919191;
+    --lightTwo:#aaa;
+}
+
+* ,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img{
+    width: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+.big-wrapper{
+    padding: 1.7rem 0 2rem;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--backgroundColor);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.containers{
+    position: relative;
+    max-width: 81rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 3rem;
+    z-index: 10;
+}
+
+header .containers{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo img{
+    width: 40px;
+    margin-right: .6rem;
+    margin-top: -0.6rem;
+}
+
+.logo h3{
+    color: var(--darkTwo);
+    font-size: 1.55rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.links ul{
+    display: flex;
+    align-items: center;
+}
+
+.links a{
+    color: var(--lightTwo);
+    margin-left: 4.5rem;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.links a:hover{
+    color: var(--hoverColor);
+    transform: scale(1.05);
+}
+
+.btns{
+    display: inline-block;
+    padding: .9rem 1.9rem;
+    color: #fff !important;
+    background-color: var(--mainColor);
+    border-radius: 16px;
+    text-transform: capitalize;
+    transition: 0.3s;
+}
+
+.btns:hover{
+    background-color: var(--hoverColor);
+    transform: scale(1) !important;
+}
+
+.showcase-area .containers{
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+}
+
+.big-title{
+    font-size: 1.4rem;
+    color: var(--darkOne);
+    text-transform: capitalize;
+    line-height: 1.4;
+    font-weight:bolder;
+}
+
+.text{
+    color: var(--lightOne);
+    font-size: 1.1rem;
+    margin: 1.9rem 0 2.5rem;
+    min-width: 600px;
+    line-height: 2.3;
+}
+
+.showcase-area .btns{
+    box-shadow: 0 0 40px 2px rgba(0, 0, 0, 0.08);
+}
+
+.person{
+    width: 123%;
+    transform: translate(15%, 15px);
+}
+
+.toggle-btn{
+    display:inline-block;
+    background: var(--darkTwo);
+    color: var(--backgroundColor);
+    outline:none;
+}
+
+
+
+
+
+
+
+
+

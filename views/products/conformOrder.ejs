@@ -1,0 +1,91 @@
+<a%- include("../partials/header")  %>  
+<!-- <%# include("../partials/navbar")  %> -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+
+    
+
+    <link rel="stylesheet" href="/css/conformOrder.css">
+
+
+    <!-- <div style="position: relative;">
+
+        <span  
+            class="text-capitalize" 
+            style="
+                position: absolute;
+                top: 130px; 
+                right: 400px;
+                font-size: 23px;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+            >Thanks for your order <%# currentUser.username %> 
+            <br>
+            Your order will get Delivered soon!!
+        </span>
+
+        <img 
+            class="conformOrderImg" 
+            style="height: calc(100vh - 105px); width: calc(100vw - 20px); object-fit:cover;margin: 2px;" 
+            src="/assets/conformOrder.jpg" 
+            alt=""
+        >
+    </div> -->
+
+        <div class="wrapper">
+
+            <div style="position: relative;">
+                <a href="/products" class="text-capitalize orderBtn">Shop more</a>
+            </div>
+
+            <div class="bird">
+
+                
+
+                <div class="hair-container">
+                    <div class="hair"></div>
+                </div>
+                <div class="face">
+                    <div class="white-container">
+                        <div class="white"></div>
+                    </div>
+                    <div class="shadow-container">
+                        <div class="shadow"></div>
+                    </div>
+                    <div class="bigBeak-container">
+                        <div class="bigBeak"></div>
+                    </div>
+                    <div class="smallBeak-container">
+                        <div class="smallBeak"></div>
+                    </div>
+                    <div class="eye"></div>
+
+                </div>
+
+                <div style="position: relative;">
+                    <h3 class="text-capitalize" style="color: rgb(201, 154, 1);position: absolute; top: 300px;left: 0; width: 300px;">You will get your order soon <%= currentUser.username %>!!</h3>
+                </div>
+
+            </div>
+        </div>
+
+        
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/js/conformOrder.js"></script>
+
+
+
+<%# include("../partials/footer")  %> 

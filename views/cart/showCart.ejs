@@ -1,0 +1,96 @@
+<%- include("../partials/header")  %>  
+<%- include("../partials/navbar")  %>
+
+<!-- <link rel="stylesheet" href="/css/star.css"> -->
+
+  <link rel="stylesheet" href="/css/cart.css">
+
+    <div class="container mt-3 mb-4">
+
+        <%- include("../partials/flash")  %>
+
+      <!-- -----------------------------------------MyCart-------------------------------------------- -->
+
+        <% if(userCart.length === 0){ %>
+
+          <article>
+
+            <div class="emptyCart">
+
+              <img class="emptyCartImg" src="/assets/emptyCart.png" alt="">
+  
+              <div class="emptyCardText">
+  
+                <h3>Your cart is empty!</h3>
+                <span>add items to it now</span>
+                <br>
+                <br>
+                <a class="shopNow" href="/products">Shop now</a>
+
+              </div>
+  
+            </div>
+
+          </article>
+
+        <% }else{ %> 
+
+          <h6 class="display-6 mb-3">My Cart</h6>
+
+          <div class="row">
+  
+            <div class="col-lg-8">
+              <%for(let item of userCart){%>
+                <div class="card mb-4" style="max-width: 650px; height: 200px;">
+                  <div class="row g-0" style="height: 100%;">
+                    <div class="col-md-4" >
+                      <img style="width: 100%; height: 100%;object-fit: cover;" src="<%= item.img %> " alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body" >
+                        <h5 class="card-title" ><%= item.name %></h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+  
+                        <form action="/user/<%=currentUser._id%>/cart/<%=item._id%>?_method=DELETE" method="post">
+                          <button class="btn btn-sm btn-danger">remove</button>
+                        </form>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <%}%>
+            </div>
+  
+            <!-- -------------------------------Total Payment----------------------------- -->
+  
+            <div class="col-lg-4">
+              <h6 class="display-6 mb-3">Products</h6>
+              <ul class="list-group"></ul>
+                <% totalAmount=0 %> 
+                <%for(let item of userCart){%>
+                    <li class="list-group-item"><strong><%= item.name %></strong> - &#x20B9; <%= item.price %> </li>
+                    <% totalAmount += item.price %> 
+                <%}%>
+  
+                <div class="mt-3">
+                  <p class="fw-bold">Total Amount - &#x20B9; <%= totalAmount %> </p>
+  
+  
+                  <a href="/buyProducts/<%= currentUser._id %> " class="btn btn-primary">Proceed To Pay</a>
+  
+                </div>
+  
+              </ul>
+            </div>
+  
+          </div>
+
+        <% } %> 
+
+
+    </div>
+
+
+
+<%- include("../partials/footer")  %> 

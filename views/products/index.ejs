@@ -1,0 +1,286 @@
+
+<%- include("../partials/header")  %>  
+<%- include("../partials/navbar")  %>    
+
+    <link rel="stylesheet" href="/css/index.css">
+
+
+    <main class="container">
+
+        <%- include("../partials/flash")  %>      
+
+        <section class="mt-3 mb-3">
+            <h4 class="display-4 heading"><i class="fas fa-shopping-cart" style="margin-right: 20px;"></i>Shopping-Cart</h4>
+        </section>
+
+        <div class="row products " >
+            <%for(let product of products){%>
+                <div class="col-lg-3 col-md-6 col-sm-12" >
+                    <div class="card text-center" style="width: 18rem;" >
+                        <img style="object-fit: cover;" src="<%= product.img %> " class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= product.name %></h5>
+                          <p class="card-text"><%= product.desc.substring(0,90) %>...</p>
+                          <a href="/products/<%= product._id %> " class="btn btn-outline-primary">More Info</a>
+                        </div>
+                      </div>
+                </div>
+            <%}%>
+        </div>
+
+
+<!-- ******************************Featured Section************************************************ -->
+    
+
+    <section class="feature" id="feature">
+        <h1 class="heading"><span>Featured Product</span></h1>
+
+        <div class="feature-slider owl-carousel">
+
+            <div class="featuredBox">
+
+                <div class="image-container">
+
+                    <div class="big-image">
+                        <img src="/assets/watch1.jpeg" alt="xx">
+                    </div>
+    
+                    <div class="small-image">
+                        <img class="image-active" src="/assets/watch1.jpeg" alt="">
+                        <img  src="/assets/watch2.jpeg" alt="">
+                        <img  src="/assets/watch3.jpeg" alt="">
+                        <img  src="/assets/watch4.jpeg" alt="">
+                    </div>
+
+                </div>
+
+                <div class="content">
+
+                    <h3>Smart Watches</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(300+) reviews</span>
+                    </div>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique ut nisi praesentiumvoluptate dolor sit amet consectetur adipisicing elit praesentiumvoluptate dolor.</p>
+                    <strong class="price">₹6,200 <span>₹7,400</span> </strong>
+                    <a href="#"><button class="btn">Shop more</button></a>
+
+                </div>
+
+            </div>
+
+            <div class="featuredBox">
+
+                <div class="image-container">
+
+                    <div class="big-image">
+                        <img src="/assets/phone1.jpg" alt="xx">
+                    </div>
+    
+                    <div class="small-image">
+                        <img class="image-active" src="/assets/phone1.jpg" alt="">
+                        <img  src="/assets/phone2.jpeg" alt="">
+                        <img  src="/assets/phone3.jpeg" alt="">
+                        <img  src="/assets/phone4.jpeg" alt="">
+                    </div>
+
+                </div>
+
+                <div class="content">
+
+                    <h3>Iphone12</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half"></i>
+                        <span>(450+) reviews</span>
+                    </div>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique ut nisi praesentiumvoluptate dolor sit amet consectetur adipisicing elit praesentiumvoluptate dolor.</p>
+                    <strong class="price">₹1,00,000 <span>₹1,50,000</span> </strong>
+                    <a href="#"><button class="btn">Shop more</button></a>
+
+                </div>
+
+            </div>
+
+            <div class="featuredBox">
+
+                <div class="image-container">
+
+                    <div class="big-image">
+                        <img src="/assets/headphone1.jpeg" alt="xx">
+                    </div>
+    
+                    <div class="small-image">
+                        <img class="image-active" src="/assets/headphone1.jpeg" alt="">
+                        <img  src="/assets/headphone2.jpeg" alt="">
+                        <img  src="/assets/headphone3.jpeg" alt="">
+                        <img  src="/assets/headphone4.jpeg" alt="">
+                    </div>
+
+                </div>
+
+                <div class="content">
+
+                    <h3>Headphone</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(320+) reviews</span>
+                    </div>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique ut nisi praesentiumvoluptate dolor sit amet consectetur adipisicing elit praesentiumvoluptate dolor.</p>
+                    <strong class="price">₹3,600 <span>₹4,200</span> </strong>
+                    <a href="#"><button class="btn">Shop more</button></a>
+
+                </div>
+
+            </div>
+
+            <div class="featuredBox">
+
+                <div class="image-container">
+
+                    <div class="big-image">
+                        <img src="/assets/laptop1.jpeg" alt="xx">
+                    </div>
+    
+                    <div class="small-image">
+                        <img class="image-active" src="/assets/laptop1.jpeg" alt="">
+                        <img  src="/assets/laptop2.jpeg" alt="">
+                        <img  src="/assets/laptop3.jpeg" alt="">
+                        <img  src="/assets/laptop4.jpeg" alt="">
+                    </div>
+
+                </div>
+
+                <div class="content">
+
+                    <h3>Laptops</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half"></i>
+                        <span>(200+) reviews</span>
+                    </div>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique ut nisi praesentiumvoluptate dolor sit amet consectetur adipisicing elit praesentiumvoluptate dolor.</p>
+                    <strong class="price">₹60,5000 <span>₹70,000</span> </strong>
+                    <a href="#"><button class="btn">Shop more</button></a>
+
+                </div>
+
+            </div>
+
+            <div class="featuredBox">
+
+                <div class="image-container">
+
+                    <div class="big-image">
+                        <img src="/assets/earBuds1.jpeg" alt="xx">
+                    </div>
+    
+                    <div class="small-image">
+                        <img class="image-active" src="/assets/earBuds1.jpeg" alt="">
+                        <img  src="/assets/earBuds2.jpeg" alt="">
+                        <img  src="/assets/earBuds3.jpeg" alt="">
+                        <img  src="/assets/earBuds4.jpeg" alt="">
+                    </div>
+
+                </div>
+
+                <div class="content">
+
+                    <h3>Ear buds</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(150+) reviews</span>
+                    </div>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique ut nisi praesentiumvoluptate dolor sit amet consectetur adipisicing elit praesentiumvoluptate dolor.</p>
+                    <strong class="price">₹3,500 <span>₹4,800</span> </strong>
+                    <a href="#"><button class="btn">Shop more</button></a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+<!--  **********************************Gallery Section**************************************** -->
+         <section class="gallery" id="gallery">
+
+            <h1 class="heading"><span>Product Gallery</span></h1>
+
+            <ul class="controls">
+                <li class="btn button-active" data-filter="all">All</li>
+                <li class="btn" data-filter="laptop">Laptop</li>
+                <li class="btn" data-filter="watch">Watches</li>
+                <li class="btn" data-filter="headphone">Headphone</li>
+                <li class="btn" data-filter="mobile">Mobile</li>
+            </ul>
+
+            <div class="image-container">
+                
+                <% for(let product of galleryProducts){ %>
+                    
+                    <div class="box <%= product.productName.toLocaleLowerCase() %>  ">
+                        <div class="image">
+                            <img style="object-fit: cover;" src="<%= product.img %> " alt="">
+                        </div>
+                        <div class="info">
+                            <h3><%= product.name %> </h3>
+                            <div class="subInfo">
+                                <strong class="price"><%= product.price %></strong>
+                                
+                                <!-- <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half"></i>
+                                </div> -->
+
+                                <a href="/products/<%= product._id %>" class="viewProduct" >View Product</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                <% } %> 
+
+            </div>
+
+        </section> 
+
+    </main>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+
+
+    <script src="/js/index.js"></script>
+
+
+<%- include("../partials/footer")  %> 
+

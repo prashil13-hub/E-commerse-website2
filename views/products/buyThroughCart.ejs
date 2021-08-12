@@ -1,0 +1,125 @@
+<%- include("../partials/header")  %>  
+<%- include("../partials/navbar")  %>
+
+    <link rel="stylesheet" href="/css/buyProduct.css">
+
+
+    
+    <div class="containers">
+        
+        <h6 class="display-6 mb-3 buyHeading"> <i class="fas fa-gifts"></i> My Orders</h6>
+
+        <article class="orderSection">
+
+            <div class="orderItems">
+                
+                <%for(let item of userCart){%>
+                    <div class="card mb-4 orderItem" >
+                      <div class="row g-0" style="height: 100%;">
+                        <div class="col-md-4" >
+                          <img style="width: 100%; height: 100%;object-fit: cover;" src="<%= item.img %> " alt="...">
+                        </div>
+                        <div class="col-md-8">
+                          <div class="card-body" >
+                            <h5 class="card-title" ><%= item.name %></h5>
+                            <h6> &#x20B9; <%= item.price %> </h6>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in text below as a natural.</p>
+      
+                            <!-- <form action="/user/<%# currentUser._id%>/cart/<%# item._id%>?_method=DELETE" method="post">
+                              <button class="btn btn-sm btn-danger">remove</button>
+                            </form> -->
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <%}%>
+
+            </div>
+
+            <div class="contactList">
+
+                <!-- <h2>Contact List</h2> -->
+
+                <form class="validated-form " action="/conformOrder/<%= currentUser._id %> " method="GET" style=" padding: 0px 15px 15px 15px;" novalidate>
+                    <div class="mb-3">
+                      <label for="name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="name" placeholder="Enter Your Full Name" name="product[name]" required>
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="img" class="form-label">Phone Number</label>
+                      <input type="text" class="form-control" id="img" placeholder="Phone Number" name="product[img]" required>
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label for="categary" class="form-label">Address</label>
+                      <input type="text" class="form-control" id="categary" placeholder="Enter Your Address" name="product[categary]" required>
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    </div>
+            
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Pincode</label>
+                        <input type="number" class="form-control" id="price" placeholder="Enter Your pincode" name="product[price]" required>
+                        <div class="valid-feedback">
+                          Looks good!
+                        </div>
+                    </div>
+            
+                    <hr style="margin: 30px 0;">
+
+                    <div style="width: 100%;">
+                        <ul class="list-group"></ul>
+                          <% totalAmount=0 %> 
+                          <%for(let item of userCart){%>
+                              <li class="list-group-item"><strong><%= item.name %></strong> - &#x20B9; <%= item.price %> </li>
+                              <% totalAmount += item.price %> 
+                          <%}%>
+            
+                          <div class="mt-3">
+                            <p class="fw-bold">Totle Amount - &#x20B9; <%= totalAmount %> </p>
+            
+                          </div>
+            
+                        </ul>
+                      </div>
+                      
+                    
+                    <button type="submit" class="btn btn-success">Conform Orders</button>
+                  </form>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+
+
+
+
+
+<%- include("../partials/footer")  %> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

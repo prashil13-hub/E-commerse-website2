@@ -1,0 +1,197 @@
+<%- include("../partials/header")  %>  
+<%- include("../partials/navbar")  %>
+
+ <link rel="stylesheet" href="/css/star.css">
+ <link rel="stylesheet" href="/css/show.css">
+
+    <div class="container mt-5 mb-5">
+
+
+      <%- include("../partials/flash")  %>
+
+        <div class="row">
+            <div class="col-lg-6 showBox" >
+                <div class="card big-image" style="width: 22rem;">
+
+                    <img src="<%= product.img %>" id="zoom" class="card-img-top" style="object-fit: cover; padding: 20px;" alt="...">
+                    
+                    <div class="card-body">
+                      <h5 class="card-title"><%= product.name %></h5>
+                      <h5 class="card-title"> &#x20B9; <%= product.price %></h5>
+                      <p class="card-text"><%= product.desc%></p>
+
+                      <div style="display:flex;">
+
+                        <a style="height: 39px; margin-right: 20px;" href="/buyProduct/<%= product._id %> " class="btn btn-success">Buy</a>
+
+                        <form action="/user/<%= product._id %>/cart" method="POST">
+                          <button style="height: 39px;" class="btn btn-warning">Add To Cart</button>
+                        </form>
+
+                      </div>
+
+                      <!-- To edit Product -->
+                      <!-- <a href="/products/<%# product._id %>/edit " class="btn btn-warning">Edit</a> -->
+                  
+                      <!-- To Delete Product -->
+                      <!-- <div class="mt-3">
+                        <form action="/products/<%# product._id %>?_method=DELETE" method="POST">
+                          <button class="btn btn-danger">Delete</button>
+                        </form>
+                      </div> -->
+
+                    </div>
+                </div>
+
+                <div class="small-image">
+                  <img class="image-active" src="<%= product.img %>" alt="">
+                    <img src="<%= product.img1 %>" alt="">
+                    <img src="<%= product.img2 %>" alt="">
+                    <img src="<%= product.img3 %>" alt="">
+                </div> 
+                
+            </div>
+
+            <!-- ------------------------------Review Section--------------------------------- -->
+            <div class="col-lg-5">
+                <h1 class="mb-3">Leave a Review</h1>
+
+                <form class="validated-form" action="/products/<%=product._id%>/review " method="POST" style=" width: 500px;" novalidate>
+                  
+                  <!-- <div class="col-lg-6" style="width: 500px;">
+                    <label for="rating" class="form-label">Rating</label>
+                    <input type="range" class="form-range" min="0" max="5" name="rating" id="rating">
+                  </div> -->
+
+                  <fieldset class="starability-grow">
+
+                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="2" checked aria-label="No rating." />
+                    <input  type="radio" id="first-rate1" name="rating" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="rating" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="rating" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="rating" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="rating" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+
+                  </fieldset>         
+                  
+                  <div class="mb-3" >
+                      <label for="comment" class="form-label">Comment</label>
+                      <textarea id="comment" class="form-control" cols="10" rows="3" name="comment" required></textarea>
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                  </div>
+                    
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+
+                <!-- ------------------------------Comment Section--------------------------------- -->
+
+                <div class="mb-3 mt-3" >
+
+                  <% for(let review=product.reviews.length-1;review>=0;review--){ %> 
+                    
+                    <div class="card mt-3 mb-3 ">
+                      <div class="card-header text-capitalize reviewBox" style="display:flex;">
+                        <!-- User -->
+
+                        <strong><%= product.reviews[review].user %></strong>                       
+                        
+                        <%if(currentUser && product.reviews[review].user === currentUser.username){%>
+                          <div class="dropdown dropdownBtn" >
+                            <button class="btn dropdown-toggle rounded-pill toggleIcon" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="fas fa-user-edit"></i>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                              
+                              <!-- <li>
+                                <a class="dropdown-item active" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</a>  
+
+                              </li> -->
+
+                              <li class="dropdown-item ">
+                                <a class="modal-btn" href="#">Edit</a>  
+                              </li>
+  
+                              <li>
+                                <form action="/products/<%= product._id %>/review/<%= product.reviews[review]._id %>?_method=DELETE" method="POST">
+                                  <button class="btn btn-dark mt-2 dropdown-item">Delete Comment</button>
+                                </form>
+                              </li>
+  
+                            </ul> 
+
+                          </div>
+
+                        <%}%>
+                        
+
+                      </div>
+
+                      <div class="card-body">
+
+                        <p class="starability-result" data-rating="<%= product.reviews[review].rating %>">
+                          Rated: <%= product.reviews[review].rating %> stars
+                        </p>
+
+                        <p class="card-text"><strong>Review : </strong><%= product.reviews[review].comment %> </p> 
+                      </div>
+                    </div>
+
+                    <div class="model-bg">
+                      <div class="modals">
+
+                        <h3 class="editCmntHeading"><i class="fas fa-edit"></i> Edit Comment</h3>
+
+                        <form class="validated-form" action="/editComment/<%= product._id %>/<%= product.reviews[review]._id %>?_method=PATCH" method="POST" style="width: 470px; margin: auto;">
+              
+                          <fieldset class="starability-grow">
+                          
+                            <input type="radio" id="no-rate" class="form-control" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                            <input type="radio" id="second-rate1" name="rating" value="1" />
+                            <label for="second-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="second-rate2" name="rating" value="2" />
+                            <label for="second-rate2" title="Not good">2 stars</label>
+                            <input type="radio" id="second-rate3" name="rating" value="3" />
+                            <label for="second-rate3" title="Average">3 stars</label>
+                            <input type="radio" id="second-rate4" name="rating" value="4" />
+                            <label for="second-rate4" title="Very good">4 stars</label>
+                            <input type="radio" id="second-rate5" name="rating" value="5" />
+                            <label for="second-rate5" title="Amazing">5 stars</label>
+                          </fieldset>
+            
+                          <div class="mb-2">
+                              <label for="desc" class="form-label">Comment</label>
+                              <textarea id="desc" class="form-control" cols="30" rows="4" name="comment"required></textarea>
+                          </div>
+                            
+                          
+                          <button type="submit" class="btn btn-primary mb-1">Submit</button>
+                          <button type="button" class="btn btn-secondary modal-close mb-1" data-bs-dismiss="modal" >Close</button>
+
+                        </form>
+
+                      </div>
+                    </div>
+            
+                  <%}%> 
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+ 
+
+
+  <script src="/js/show.js"></script>
+
+
+<%- include("../partials/footer")  %> 
