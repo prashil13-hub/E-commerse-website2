@@ -24,7 +24,7 @@
 
                         <a style="height: 39px; margin-right: 20px;" href="/buyProduct/<%= product._id %> " class="btn btn-success">Buy</a>
 
-                        <form action="/user/<%= product._id %>/cart" method="POST">
+                        <form action="/user/<%= product._id %>/<%= currentUser._id %>/cart" method="POST">
                           <button style="height: 39px;" class="btn btn-warning">Add To Cart</button>
                         </form>
 

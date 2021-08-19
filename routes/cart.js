@@ -21,21 +21,31 @@ router.get('/user/:userId/cart',isLoggedIn,async(req,res)=>{
 
 
 // To add cart
-router.post('/user/:id/cart',isLoggedIn,async(req,res)=>{
+router.post('/user/:id/:userId/cart',isLoggedIn,async(req,res)=>{
 
     try{
 
-        const product = await Product.findById(req.params.id)
+        const product = await Product.findById(req.params.id);
+        const currentUser = await User.findById(req.params.userId);
+        const productId = req.params.id;
+        const userCart = currentUser.cart;
 
-        const user = req.user;
+        if(userCart.includes(productId)){
+            console.log("hey")
+            res.redirect(`/user/${req.user._id}/cart`) 
+        }else{
+            const user = req.user;
 
-        user.cart.push(product)
+            user.cart.push(product)
 
-        await user.save();
+            await user.save();
 
-        req.flash('success','Product Added to Cart Successfully')
+            req.flash('success','Product Added to Cart Successfully')
 
-        res.redirect(`/user/${req.user._id}/cart`)
+            res.redirect(`/user/${req.user._id}/cart`) ;      
+        }
+
+        
 
     }catch(e){
         req.flash('error','Unable to Get the Cart ')

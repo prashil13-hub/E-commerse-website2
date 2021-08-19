@@ -42,7 +42,7 @@ router.post('/upload/image/:id',upload.single('image'),async(req,res)=>{
 router.get('/removeImg/:id',async(req,res)=>{
 
     const user = req.user;
-    user.profilePhoto=" ";
+    user.profilePhoto=undefined;
     await user.save();
 
     res.redirect(`/upload/${req.params.id}`)

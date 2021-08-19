@@ -1,3 +1,29 @@
+.cartOption{
+    display: flex;
+}
+
+.cartOption div{
+    margin-left: 20px;
+}
+
+.quantity{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantitySign{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.quantityNumber{
+    width: 30px;
+    border: 1px solid black;
+    margin: 0 5px;
+    text-align: center;
+}
+
 article{
     box-shadow: 0px 1px 11px 3px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 1px 11px 3px rgba(0,0,0,0.75);
