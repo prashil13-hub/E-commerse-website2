@@ -9,7 +9,12 @@ const productSchema = new mongoose.Schema({
         required:true
     },
     productName:{
-        type:String
+        type:String,
+        default:""
+    },
+    numbetOfProductInCart:{
+        type:Number,
+        default:1,
     },
     img:{
         type:String

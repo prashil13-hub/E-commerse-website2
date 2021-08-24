@@ -212,8 +212,8 @@ router.delete('/products/:productId/review/:reviewId',isLoggedIn,async(req,res)=
 // to Edit Comment
 router.patch('/editComment/:id/:reviewId',isLoggedIn,async(req,res)=>{
 
-    const product= await Product.findById(req.params.id).populate('reviews')
-    const editableReview = await Review.findByIdAndUpdate(req.params.reviewId,req.body)
+    await Product.findById(req.params.id).populate('reviews')
+    await Review.findByIdAndUpdate(req.params.reviewId,req.body)
     
 
     res.redirect(`/products/${req.params.id}`)
