@@ -4,12 +4,14 @@ const upload = require('../multer')
 const cloudinary =require('../cloudinary');
 const User = require('../models/user');
 const fs =require('fs')
+const Cart = require('../models/cart');
+const Order = require('../models/orders')
 
 
 
 router.get('/upload/:userId',async(req,res)=>{
-    const user = await User.findById(req.params.userId).populate('cart BoughtProducts')
-    res.render('dashboard/upload',{userCart:user.cart , userOrders:user.BoughtProducts})
+    const user = await User.findById(req.params.userId).populate('cartInfo boughtProduct')
+    res.render('dashboard/upload',{userCart:user.cartInfo , userOrders:user.boughtProduct})
 })
 
 
@@ -83,7 +85,7 @@ router.get('/removeCoverPhoto/:id',async(req,res)=>{
     await user.save();
 
     res.redirect(`/upload/${req.params.id}`)
-
+    
 })
 
 // Removing ordered item
@@ -92,13 +94,13 @@ router.delete('/user/:userid/order/:id', async(req, res) => {
 
     const { userid, id } = req.params;
 
-    await User.findByIdAndUpdate(userid,{$pull:{BoughtProducts:id}})
+    await User.findByIdAndUpdate(userid,{$pull:{boughtProduct:id}})
+    await Order.findByIdAndDelete(id);
+
 
     res.redirect(`/upload/${req.params.userid}`)
     
 })
-
-
 
 
 

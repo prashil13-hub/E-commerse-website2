@@ -12,10 +12,10 @@ const productSchema = new mongoose.Schema({
         type:String,
         default:""
     },
-    numbetOfProductInCart:{
-        type:Number,
-        default:1,
-    },
+    // numbetOfProductInCart:{
+    //     type:Number,
+    //     default:1,
+    // },
     img:{
         type:String
     },

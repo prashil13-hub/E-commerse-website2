@@ -95,7 +95,7 @@
 
                 <li class="sidebarFriend">
                   <img class="sidebarFriendImg" src="<%= item.img %> " alt="x" >
-                  <span class="sidebarFriendName"><%= item.name %> </span>
+                  <span class="sidebarFriendName"><%= item.productName %> </span>
                 </li>
 
               <% } %> 
@@ -290,8 +290,8 @@
                       </div>
                       <div class="col-md-8">
                         <div class="card-body" >
-                          <h5 class="card-title" ><%= item.name %></h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <h5 class="card-title" ><%= item.productName %></h5>
+                          <p class="card-text"><%= item.desc %></p>
     
                           <form action="/user/<%=currentUser._id%>/order/<%=item._id%>?_method=DELETE" method="post">
                             <button class="btn btn-sm btn-danger">remove</button>

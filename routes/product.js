@@ -1,8 +1,9 @@
-const express = require('express')
+const express = require('express');
 const router = express.Router();
-const Product = require('../models/product')
-const Review = require('../models/review')
-const {isLoggedIn} =require('../middleware')
+const Product = require('../models/product');
+const Review = require('../models/review');
+const Order = require('../models/orders');
+const {isLoggedIn} =require('../middleware');
 
 
 // Display all the products
@@ -114,26 +115,37 @@ router.get('/buyProduct/:id', isLoggedIn,async(req,res)=>{
 })
 
 // To conform single order
-
 router.get('/conformSingleOrder/:productId',isLoggedIn,async(req,res)=>{
     
-    const product= await Product.findById(req.params.productId)
+    try{
+        const product= await Product.findById(req.params.productId)
+        let user = req.user;
 
-    let user = req.user;
-    let BoughtProducts = user.BoughtProducts;
+        let orderItem = new Order({
+            user:user.username,
+            img:product.img,
+            productName:product.name,
+            desc:product.desc,
+        })
 
-    // console.log(BoughtProducts)
+        await orderItem.save();
+        await user.save();
+        
+        let boughtProduct = user.boughtProduct;
+    
+        boughtProduct.unshift(orderItem);
+        await user.save();
+    
+        res.render('products/conformOrder');
+    }catch(err){
+        req.flash('error','Cannot Edit this Product')
+        res.redirect('/error')
+    }
 
-    BoughtProducts.unshift(product);
-    await user.save();
 
-    // console.log(BoughtProducts)
-
-    res.render('products/conformOrder')
 })
 
 // To delete perticular product
-
 router.delete('/products/:id',isLoggedIn,async(req,res)=>{
 
     try{

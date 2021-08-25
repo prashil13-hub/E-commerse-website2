@@ -3,7 +3,8 @@ const router = express.Router();
 const {isLoggedIn} = require('../middleware');
 const Product = require('../models/product')
 const User = require('../models/user')
-const Cart = require('../models/cart')
+const Cart = require('../models/cart');
+const Order = require('../models/orders');
 
 
 
@@ -150,31 +151,49 @@ router.patch('/addCartItem/:id',async(req,res)=>{
 // To Buy cart products
 router.get('/buyProducts/:id',async(req,res)=>{
     
-    const user = await User.findById(req.params.id).populate('cart')
+    const user = await User.findById(req.params.id).populate('cartInfo')
 
-    res.render('products/buyThroughCart',{userCart:user.cart})
+    res.render('products/buyThroughCart',{userCart:user.cartInfo})
 })
 
 
 // Conform Order
 router.get('/conformOrder/:id',async(req,res)=>{
 
-    // console.log(req.params)
+    try{
+        let user = req.user;
 
-    let user = req.user;
+        let Usercart = user.cartInfo;
+        let boughtProduct = user.boughtProduct;
 
-    let Usercart = user.cart;
-    let BoughtProducts = user.BoughtProducts;
+        for(item of Usercart){
 
-    for(item of Usercart){
-        BoughtProducts.unshift(item);
+            let cartItem = await Cart.findById(item)
+            let orderItem = new Order({
+                user:req.user.username,
+                img:cartItem.img,
+                productName:cartItem.productName,
+                desc:cartItem.desc,
+            })
+            await orderItem.save();
+
+            boughtProduct.unshift(orderItem);
+
+            await Cart.findByIdAndDelete(item);
+        }
+
+        await User.updateOne({cartInfo:Usercart},{cartInfo:[ ]});
+    
+        await user.save();
+        
+        res.render('products/conformOrder');
+
+    }catch(err){
+        req.flash('error','Unable to Get the Cart ')
+        res.render('error')
     }
 
-    await User.updateOne({cart:Usercart},{cart:[ ]})
 
-    await user.save();
-    
-    res.render('products/conformOrder')
 })
 
 

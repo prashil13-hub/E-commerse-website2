@@ -21,8 +21,8 @@
                         </div>
                         <div class="col-md-8">
                           <div class="card-body" >
-                            <h5 class="card-title" ><%= item.name %></h5>
-                            <h6> &#x20B9; <%= item.price %> </h6>
+                            <h5 class="card-title" ><%= item.productName %></h5>
+                            <h6> &#x20B9; <%= item.productPrice %> (<%= item.noOfProductInCart %>)</h6>
                             <p class="card-text">This is a wider card with supporting text below as a natural lead-in text below as a natural.</p>
       
                             <!-- <form action="/user/<%# currentUser._id%>/cart/<%# item._id%>?_method=DELETE" method="post">
@@ -79,8 +79,8 @@
                         <ul class="list-group"></ul>
                           <% totalAmount=0 %> 
                           <%for(let item of userCart){%>
-                              <li class="list-group-item"><strong><%= item.name %></strong> - &#x20B9; <%= item.price %> </li>
-                              <% totalAmount += item.price %> 
+                              <li class="list-group-item"><strong><%= item.productName %></strong> - &#x20B9; <%= item.productPrice %> (<%= item.noOfProductInCart %>)</li>
+                              <% totalAmount += item.productPrice %> 
                           <%}%>
             
                           <div class="mt-3">
