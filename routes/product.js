@@ -53,9 +53,13 @@ router.post('/products',isLoggedIn,async(req,res)=>{
 })
 
 // Contact Us Section
-
 router.get('/contactUs',(req,res)=>{
     res.render('products/contactUs')
+})
+
+// Contact us resolve
+router.get('/contactUsResolve',isLoggedIn,(req,res)=>{
+    res.render('products/contactUsResolve')
 })
 
 

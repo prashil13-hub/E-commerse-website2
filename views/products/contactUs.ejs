@@ -3,79 +3,6 @@
 
     <link rel="stylesheet" href="/css/contactUs.css">
 
-
-    <!-- **************************Contact Us From************************************* -->
-
-    <!-- <article style="padding: 5px 30px;margin: 3px 5px;">
-        <div style="margin: 0;padding: 0;" class="container">
-            <div class="contactinfo">
-                <h2>Contact Info</h2>
-                <ul class="info">
-                    <li>
-                        <span><i class="fas fa-map-marker-alt"></i></span>
-                        <span>2912 Meadowbrook Road <br>
-                            Los Angekes,CA <br>
-                            90017
-                        </span>
-                    </li>
-                    <li>
-                        <span><i class="fas fa-envelope-open-text"></i></span>
-                        <span>lorem@gmail.com</span>
-                    </li>
-                    <li>
-                        <span><i class="fas fa-phone-alt"></i></span>
-                        <span>310-386-1642</span>
-                    </li>
-                </ul>
-
-                <ul class="sci">
-                    <li><a href=""><i class="fab fa-facebook"></i></a></li>
-                    <li><a href=""><i class="fab fa-instagram"></i></a></li>
-                    <li><a href=""><i class="fab fa-linkedin"></i></a></li>
-                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
-                </ul>
-
-            </div>
-
-            <div class="contactForm">
-                <h2>Send a Message</h2>
-                <div class="formBox">
-                    <div class="inputBox w50">
-                        <input type="text" name="" required>
-                        <span>First Name</span>
-                    </div>
-                    <div class="inputBox w50">
-                        <input type="text" name="" required>
-                        <span>Last Name</span>
-                    </div>
-                    <div class="inputBox w50">
-                        <input type="text" name="" required>
-                        <span>Email Address</span>
-                    </div>
-                    <div class="inputBox w50">
-                        <input type="text" name="" required>
-                        <span>Mobile Number</span>
-                    </div>
-                    <div class="inputBox w100">
-                        <textarea name="" id="" cols="20" rows="6"></textarea>
-                        <span class="textarea">Write Your Message Here...</span>
-                    </div>
-                    <div class="inputBox w50">
-                        <input type="submit" value="Send">
-                    </div>
-    
-                </div>
-            </div>
-
-        </div>
-
-
-    </article> -->
-
-
-
-
-
     <!-- ************************3D Cards********************************************** -->
 
     <!-- <h3 class="heading">Our Team</h3>
@@ -190,25 +117,25 @@
             <span class="circle one"></span>
             <span class="circle two"></span>
   
-            <form action="#" autocomplete="off">
+            <form action="/contactUsResolve" method="GET" autocomplete="off">
               <h3 class="title">Contact us</h3>
               <div class="input-container">
-                <input type="text" name="name" class="input" />
+                <input type="text" name="name" class="input" required/>
                 <label for="">Username</label>
                 <span>Username</span>
               </div>
               <div class="input-container">
-                <input type="email" name="email" class="input" />
+                <input type="email" name="email" class="input" required/>
                 <label for="">Email</label>
                 <span>Email</span>
               </div>
               <div class="input-container">
-                <input type="tel" name="phone" class="input" />
+                <input type="tel" name="phone" class="input" required/>
                 <label for="">Phone</label>
                 <span>Phone</span>
               </div>
               <div class="input-container textarea">
-                <textarea name="message" class="input"></textarea>
+                <textarea name="message" class="input" required></textarea>
                 <label for="">Message</label>
                 <span>Message</span>
               </div>

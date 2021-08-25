@@ -1,0 +1,27 @@
+<%- include("../partials/header")  %>  
+<%- include("../partials/navbar")  %>
+
+    <link rel="stylesheet" href="/css/conformOrder.css">
+
+    <article>
+
+        <div class="emptyCart">
+
+            <img class="emptyCartImg" src="/assets/contactUsResolve.png" alt="">
+
+            <div class="emptyCardText">
+
+                <h3>Thanks for your queries <%= currentUser.username %> !!!</h3>
+                <span>We will try to resolve it soon</span>
+                <br>
+                <br>
+                <a class="shopNow" href="/products">Explore more</a>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+<%- include("../partials/footer")  %>

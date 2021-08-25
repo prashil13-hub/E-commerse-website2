@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !== 'production'){
+    require('dotenv').config();
+}
+
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose')
@@ -24,7 +28,7 @@ const multerRoutes = require('./routes/mulAndCloudinary')
 
 
 
-mongoose.connect('mongodb://localhost:27017/shopApp', 
+mongoose.connect(process.env.DB_URL, 
     {
         useNewUrlParser: true, 
         useUnifiedTopology: true,
@@ -95,7 +99,7 @@ app.get('/',(req,res)=>{
 
 
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT || 3000,()=>{
     console.log("Server is running at port 3000")
 })
 
